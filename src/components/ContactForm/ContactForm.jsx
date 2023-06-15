@@ -20,16 +20,25 @@ export class ContactForm extends Component {
     });
   };
 
-  onSubmitForm = event => {
-    event.preventDefault();
-    this.props.onSubmit({
-      name: this.state.name,
-      number: this.state.number,
-      id: nanoid(),
-    });
+onSubmitForm = (event) => {
+  event.preventDefault();
+  const { name, number } = this.state;
+  const id = nanoid();
+  this.props.onSubmit({ name, number, id });
+  this.reset(event);
+};
 
-    this.reset(event);
-  };
+
+  // onSubmitForm = event => {
+  //   event.preventDefault();
+  //   this.props.onSubmit({
+  //     name: this.state.name,
+  //     number: this.state.number,
+  //     id: nanoid(),
+  //   });
+
+  //   this.reset(event);
+  // };
 
   reset = event => {
     this.setState({ name: '', number: '' });
